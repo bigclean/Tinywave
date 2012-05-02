@@ -1,4 +1,4 @@
-package com.github.bigclean;
+package com.github.bigclean.weibo;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;

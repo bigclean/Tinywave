@@ -1,4 +1,4 @@
-package com.github.bigclean;
+package com.github.bigclean.weibo;
 
 import org.apache.http.client.methods.HttpGet;
 
