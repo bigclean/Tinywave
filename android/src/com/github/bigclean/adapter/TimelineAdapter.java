@@ -40,6 +40,7 @@ public class TimelineAdapter extends BaseAdapter {
 
 	@Override
 	public long getItemId(int position) {
+		// Maybe message id could be better to act as id?
 		return position;
 	}
 
@@ -48,11 +49,20 @@ public class TimelineAdapter extends BaseAdapter {
 		View rowView = rowViews.get(position);
 		if (rowView == null) {
 			LayoutInflater layoutInflater = LayoutInflater.from(context);
-			rowView = layoutInflater.inflate(R.layout.timeline, null);
+			rowView = layoutInflater.inflate(R.layout.timeline, null); // using timeline.xml to generate View dynamically
 			TextView nameView  = (TextView) rowView.findViewById(R.id.nameView);
 			TextView tweetView = (TextView) rowView.findViewById(R.id.tweetView);
-			nameView.setText(weiboTweets.get(position).getUser().getName());
-			tweetView.setText(weiboTweets.get(position).getText());
+			
+			WeiboTweet currentTweet = (WeiboTweet) getItem(position);
+			nameView.setText(currentTweet.getUser().getName());
+			if (currentTweet.getRetweetedTweet() != null) {
+				String originalText = currentTweet.getRetweetedTweet().getText();
+				String assembledText = "转载：" + originalText;
+				tweetView.setText(assembledText);
+			} else {
+				tweetView.setText(currentTweet.getText());
+			}
+			
 			rowViews.put(position, rowView);
 		}
 		return rowView;

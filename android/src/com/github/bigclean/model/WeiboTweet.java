@@ -19,6 +19,8 @@ public class WeiboTweet {
 	private String  geo;
 	private WeiboTweetUser user;
 	
+	private WeiboTweet retweetedTweet;
+	
 	WeiboTweet() {
 		super();
 	}
@@ -43,6 +45,12 @@ public class WeiboTweet {
 			
 			geo = jsonWeiboTweet.getString("geo");
 			user = new WeiboTweetUser(jsonWeiboTweet.getJSONObject("user"));
+			
+			if (jsonWeiboTweet.getJSONObject("retweeted_status") != null) {
+				retweetedTweet = new WeiboTweet(jsonWeiboTweet.getJSONObject("retweeted_status"));
+			} else {
+				retweetedTweet = null;
+			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
@@ -101,6 +109,10 @@ public class WeiboTweet {
 
 	public WeiboTweetUser getUser() {
 		return user;
+	}
+	
+	public WeiboTweet getRetweetedTweet() {
+		return retweetedTweet;
 	}
 
 }
