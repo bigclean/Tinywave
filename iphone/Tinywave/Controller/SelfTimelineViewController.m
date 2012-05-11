@@ -5,9 +5,8 @@
 //  Created by Bigclean Cheng on 12/05/07.
 //
 
+#import <Foundation/NSJSONSerialization.h>
 #import "TimelineViewController.h"
-
-#import "SBJson.h"
 
 @interface SelfTimelineViewController : TimelineViewController
 <TimelineViewControllerDelegate>
@@ -38,9 +37,15 @@
     [weiboClient retrieveSelfTimeline:[Timeline getSelfTimeline]];
 
     NSString *selfTimelineTweets = [defaults objectForKey:kSelfTimeline];
+    NSData *jsonSelfTimelineTweets = [selfTimelineTweets dataUsingEncoding:NSUTF8StringEncoding];
 
-    SBJsonParser *timelineParser = [[SBJsonParser alloc] init];
-    NSArray *weiboTweetsArray = [timelineParser objectWithString:selfTimelineTweets error:nil];
+    NSError *error = nil;
+    NSArray *weiboTweetsArray = [NSJSONSerialization JSONObjectWithData:jsonSelfTimelineTweets
+                                                                options:NSJSONReadingMutableContainers
+                                                                  error:&error];
+    if (weiboTweetsArray == nil) {
+        NSLog(@"Error parsing JSON: %@", error);
+    }
     WeiboTweetStream *stream = [[WeiboTweetStream alloc] initWithTweetStream:weiboTweetsArray];
 
     self.weiboTweets = stream.tweets;

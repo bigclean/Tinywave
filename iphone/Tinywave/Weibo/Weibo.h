@@ -9,8 +9,6 @@
 #import "WeiboOAuth.h"
 #import "WeiboTweetStream.h"
 
-#import "SBJson.h"
-
 #define kFriendsTimeline @"friendsTimeline"
 #define kSelfTimeline    @"selfTimeline"
 
