@@ -3,6 +3,7 @@
 //  Tinywave
 //
 //  Created by Bigclean Cheng on 12/05/07.
+//  Last updated on 12/05/12.
 //
 
 #import <Foundation/NSJSONSerialization.h>
@@ -28,14 +29,11 @@
 
 - (void)parseTimelineTweets
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    NSString *accessTokenKey    = [defaults objectForKey:kAccessTokenKey];
-    NSString *accessTokenSecret = [defaults objectForKey:kAccessTokenSecret];
-
-    Weibo *weiboClient = [[Weibo alloc] initWithToken:accessTokenKey secret:accessTokenSecret];
+    // retrieve self timeline tweets
+    Weibo *weiboClient = [[Weibo alloc] init];
     [weiboClient retrieveSelfTimeline:[Timeline getSelfTimeline]];
-
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *selfTimelineTweets = [defaults objectForKey:kSelfTimeline];
     NSData *jsonSelfTimelineTweets = [selfTimelineTweets dataUsingEncoding:NSUTF8StringEncoding];
 
@@ -49,7 +47,7 @@
     WeiboTweetStream *stream = [[WeiboTweetStream alloc] initWithTweetStream:weiboTweetsArray];
 
     self.weiboTweets = stream.tweets;
-    //[weiboTweetsArray release]; // why can't release it?
+    [weiboClient release];
 }
 
 @end

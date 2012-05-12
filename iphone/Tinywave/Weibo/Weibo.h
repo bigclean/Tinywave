@@ -3,6 +3,7 @@
 //  Tinywave
 //
 //  Created by Bigclean Cheng on 12/04/19.
+//  Last updated on 12/05/12.
 //
 
 #import <Foundation/Foundation.h>
@@ -23,16 +24,18 @@
 
 #pragma mark -
 #pragma mark Inital and dealloc
+- (id)init;
 - (id)initWithToken:(NSString *)token secret:(NSString *)tokenSecret;
+- (id)initWithKey:(NSString *)consumerKey secret:(NSString *)consumerSecret;
 - (id)initWithKey:(NSString *)consumerKey secret:(NSString *)consumerSecret token:(NSString *)token secret:(NSString *)tokenSceret;
 - (void)dealloc;
 
-#pragma mark Timleine of Friends
+#pragma mark Timeline of Friends
 - (void)retrieveFriendsTimeline:(OAMutableURLRequest *)request;
 - (void)friendsTimelineTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)friendsTimelineTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;
 
-#pragma mark Timleine of Self
+#pragma mark Timeline of Self
 - (void)retrieveSelfTimeline:(OAMutableURLRequest *)request;
 - (void)selfTimelineTicket:(OAServiceTicket *)ticket didFinishWithData:(NSData *)data;
 - (void)selfTimelineTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error;

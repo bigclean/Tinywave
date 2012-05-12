@@ -3,6 +3,7 @@
 //  Tinywave
 //
 //  Created by Bigclean Cheng on 11/04/19.
+//  Last updated on 12/05/12.
 //
 
 #import <Foundation/Foundation.h>
@@ -28,5 +29,12 @@
                        withMinimumId:(long)sinceId
                        withMaximumId:(long)maxId
                       startingAtPage:(int)page;
+
++ (OAMutableURLRequest *)getTimeline:(NSString *)timelineURL
+                       withMinimumId:(long)sinceId
+                       withMaximumId:(long)maxId
+                      startingAtPage:(int)page
+                            consumer:(OAConsumer *)consumer
+                               token:(OAToken *)token;
 
 @end

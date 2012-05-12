@@ -19,7 +19,7 @@
     if (self = [super init]) {
         NSMutableArray *mutableTweets = [[NSMutableArray alloc] init];
         for(int i = 0; i < [weiboTweetsArray count]; i++) {
-            WeiboTweet *tweet = [[WeiboTweet alloc] initWithWeiboTweet:[weiboTweetsArray objectAtIndex:i]];
+            WeiboTweet *tweet = [[WeiboTweet alloc] initWithWeiboTweet:[[weiboTweetsArray objectAtIndex:i] retain]];
             [mutableTweets addObject:tweet];
             [tweet release];
         }

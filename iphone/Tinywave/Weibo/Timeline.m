@@ -3,6 +3,7 @@
 //  Tinywave
 //
 //  Created by Bigclean Cheng on 12/04/19.
+//  Last updated on 12/05/12.
 //
 
 #import "Timeline.h"
@@ -33,20 +34,44 @@
     return [self getTimeline:STATUSES_FRIENDS_TIMELINE_URL withMinimumId:sinceId withMaximumId:maxId startingAtPage:page];
 }
 
+
 + (OAMutableURLRequest *)getTimeline:(NSString *)timelineURL
                        withMinimumId:(long)sinceId
                        withMaximumId:(long)maxId
-                      startingAtPage:(int)page;
+                      startingAtPage:(int)page
 {
+    // XXX: better way to use memeber variables of `Weibo
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *consumerKey    = [defaults objectForKey:kConsumerKey];
     NSString *consumerSecret = [defaults objectForKey:kConsumerSecret];
-    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumerKey secret:consumerSecret];
 
     NSString *accessTokenKey    = [defaults objectForKey:kAccessTokenKey];
     NSString *accessTokenSecret = [defaults objectForKey:kAccessTokenSecret];
-    OAToken *token = [[OAToken alloc] initWithKey:accessTokenKey secret:accessTokenSecret];
+    
+    OAConsumer *consumer = [[OAConsumer alloc] initWithKey:consumerKey secret:consumerSecret];
+    OAToken    *token    = [[OAToken alloc] initWithKey:accessTokenKey secret:accessTokenSecret];
 
+    [consumerKey       release];
+    [consumerSecret    release];
+    [accessTokenKey    release];
+    [accessTokenSecret release];
+
+    // FIXME: how to release 'consumer' and 'token'?
+    return [self getTimeline:timelineURL
+               withMinimumId:sinceId
+               withMaximumId:maxId
+              startingAtPage:page
+                    consumer:consumer
+                       token:token];
+}
+
++ (OAMutableURLRequest *)getTimeline:(NSString *)timelineURL
+                       withMinimumId:(long)sinceId
+                       withMaximumId:(long)maxId
+                      startingAtPage:(int)page
+                            consumer:(OAConsumer *)consumer
+                               token:(OAToken *)token
+{
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
 
     if (sinceId != 0) {
@@ -66,11 +91,7 @@
                                                                 method:nil];
     [request setHTTPMethod:@"GET"];
 
-    [consumerKey       release];
-    [consumerSecret    release];
-    [accessTokenKey    release];
-    [accessTokenSecret release];
-
+    [dict     release];
     return request;
 }
 

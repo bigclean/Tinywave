@@ -3,6 +3,7 @@
 //  Tinywave
 //
 //  Created by Bigclean Cheng on 12/05/07.
+//  Last updated on 12/05/12.
 //
 
 #import "AppDelegate.h"
@@ -31,6 +32,9 @@
     return YES;
 }
 
+/*!
+ @see also http://xujiwei.com/blog/ios-app-custom-url-scheme-design/
+ */
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     TinywaveViewController *waveView = [self.rootViewController.viewControllers objectAtIndex:2];
 

@@ -3,6 +3,7 @@
 //  Tinywave
 //
 //  Created by Bigclean Cheng on 12/04/19.
+//  Last updated on 12/05/12.
 //
 
 #import "Weibo.h"
@@ -14,9 +15,38 @@
 #pragma mark -
 #pragma mark Inital and dealloc
 
+- (id)init
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *accessTokenKey    = [defaults objectForKey:kAccessTokenKey];
+    NSString *accessTokenSecret = [defaults objectForKey:kAccessTokenSecret];
+    
+    if (self  = [self initWithToken:accessTokenKey secret:accessTokenSecret]) {
+    }
+    return self;
+}
+
 - (id)initWithToken:(NSString *)token secret:(NSString *)tokenSecret
 {
-    if (self = [self initWithKey:CONSUMER_KEY secret:CONSUMER_SECRET token:token secret:tokenSecret]) {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+    NSString *consumerKey    = [defaults objectForKey:kConsumerKey];
+    NSString *consumerSecret = [defaults objectForKey:kConsumerSecret];
+    
+    if (self = [self initWithKey:consumerKey secret:consumerSecret token:token secret:tokenSecret]) {
+    }
+    return self;
+}
+
+- (id)initWithKey:(NSString *)consumerKey secret:(NSString *)consumerSecret
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *accessTokenKey    = [defaults objectForKey:kAccessTokenKey];
+    NSString *accessTokenSecret = [defaults objectForKey:kAccessTokenSecret];
+    
+    if (self = [self initWithKey:consumerKey secret:consumerSecret token:accessTokenKey secret:accessTokenSecret]) {
     }
     return self;
 }

@@ -3,7 +3,7 @@
 //  Tinywave
 //
 //  Created by Bigclean Cheng on 12/04/19.
-//  Last updated on 12/05/01
+//  Last updated on 12/05/12
 //
 
 #import "WeiboOAuth.h"
@@ -69,6 +69,10 @@
                 didFinishSelector:@selector(requestTokenTicket:didFinishWithData:)
                   didFailSelector:@selector(requestTokenTicket:didFailWithError:)];
 
+    [callbackURL release];
+    [dict release];
+
+    // XXX: better solution to separate it from 'obtainRequestToken' function
     @try {
         dict = [[NSMutableDictionary alloc] init];
         [WeiboOAuth addParameterInDict:dict key:@"oauth_token" value:self.weiboToken.key];
@@ -76,6 +80,8 @@
                                                param:dict
                                               method:@"GET"];
         NSLog(@"Request token authorized by user url is %@", request.URL);
+
+        [dict release];
         return request;
     }
     @catch (NSException *exception) {
@@ -100,6 +106,7 @@
 
 - (void)requestTokenTicket:(OAServiceTicket *)ticket didFailWithError:(NSError *)error
 {
+    NSLog(@"not ok");
     NSLog(@"%@", error);
 }
 
@@ -122,6 +129,7 @@
                 didFinishSelector:@selector(accessTokenTicket:didFinishWithData:)
                   didFailSelector:@selector(accessTokenTicket:didFailWithError:)];
 
+    [dict release];
     NSLog(@"access key: %@, access key secret: %@", self.weiboToken.key, self.weiboToken.secret);
 }
 
@@ -154,7 +162,7 @@
 }
 
 /*!
- @li Response url has the such format:
+ @li Response url holds such format:
             'tinywave://tinywave?oauth_token=b5be8e3ab580ee2cf07bbbfc1f73cbdf&oauth_verifier=655703'
  */
 + (NSString *)getVerifierFromURL:(NSURL *)url
@@ -165,12 +173,17 @@
     return [queryParameter substringFromIndex:verifierStartIndex];
 }
 
+/*!
+ @li Response HTTP Body holds such format:
+              'oauth_token=df71c43cf51a60cc4ccac9713fa83a3c&oauth_token_secret=fb279bafa2c8573fb2888407d1da0f51&user_id=1788726225'
+ */
 - (NSString *)getUserIDFromHTTPBody:(NSString *)body
 {
     if (body == nil) {
         return nil;
     }
 
+    // extract HTTP Body to arrays, each element holds the such format: 'user_id=1788726225'
     NSArray *queryParameterArray = [body componentsSeparatedByString:@"&"];
     if ([queryParameterArray count] < 1) {
         return nil;
