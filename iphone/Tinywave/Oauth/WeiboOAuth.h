@@ -11,6 +11,7 @@
 #import "WeiboOAuthKeys.h"
 #import "WeiboTweetStream.h"
 
+// see also: https://github.com/lgalabru/oauth-objc/
 #import "OAuthConsumer.h"
 
 #define kConsumerKey       @"consumerKey"
