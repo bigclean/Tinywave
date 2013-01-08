@@ -9,9 +9,8 @@ import org.apache.http.message.BasicNameValuePair;
 import oauth.signpost.OAuth;
 
 import com.github.bigclean.R;
-import com.github.bigclean.Timeline;
-import com.github.bigclean.Weibo;
 import com.github.bigclean.oauth.WeiboOAuthKeys;
+import com.github.bigclean.weibo.Weibo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -32,18 +31,21 @@ public class TinywaveActivity extends Activity {
 
         weiboPrefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        Button timeline = (Button) findViewById(R.id.timeline);
-        Button tweet = (Button) findViewById(R.id.tweet);
+        Button tweetButton    = (Button) findViewById(R.id.tweet_button);
+        Button loginButton    = (Button) findViewById(R.id.login_button);
+        Button exploreTimelineButton    = (Button) findViewById(R.id.explore_timeline_button);
+        Button exploreCommentButton     = (Button) findViewById(R.id.explore_comment_button);
+        Button exploreFavoriteButton    = (Button) findViewById(R.id.explore_favorite_button);
+        Button exploreFriendButton      = (Button) findViewById(R.id.explore_friend_button);
 
-        Button btn=(Button) findViewById(R.id.btn);
-        btn.setOnClickListener(new OnClickListener(){
-			@Override
-			public void onClick(View arg0) {
-	        	startActivity(new Intent(TinywaveActivity.this, LoginActivity.class));
-			}
+        loginButton.setOnClickListener(new OnClickListener(){
+        	@Override
+        	public void onClick(View arg0) {
+        		startActivity(new Intent(TinywaveActivity.this, LoginActivity.class));
+        	}
         });
 
-        tweet.setOnClickListener(new OnClickListener() {
+        tweetButton.setOnClickListener(new OnClickListener() {
         	@Override
         	public void onClick(View v) {
         		Weibo weiboClient = new Weibo(
@@ -51,7 +53,7 @@ public class TinywaveActivity extends Activity {
         				weiboPrefs.getString(OAuth.OAUTH_TOKEN_SECRET, "")
         				);
 		
-        		String postStatus = "Test tweet from tinywave...";
+        		String postStatus = "Tweets from dummy Weibo androic client.";
         		String updateStatusUrl = "http://api.t.sina.com.cn/statuses/update.json";
         		List<NameValuePair> updateStatus = new ArrayList<NameValuePair>();
         		updateStatus.add(new BasicNameValuePair("source", WeiboOAuthKeys.CONSUMER_SECRET));
@@ -62,22 +64,34 @@ public class TinywaveActivity extends Activity {
 	
         });
 
-        timeline.setOnClickListener(new OnClickListener() {
+        exploreTimelineButton.setOnClickListener(new OnClickListener(){
         	@Override
         	public void onClick(View v) {
-        		Weibo weiboClient = new Weibo(
-        				weiboPrefs.getString(OAuth.OAUTH_TOKEN, ""),
-        				weiboPrefs.getString(OAuth.OAUTH_TOKEN_SECRET, "")
-        				);
-		
-        		Intent weiboTimelineIntent = new Intent();
-        		weiboTimelineIntent.putExtra("friends_timeline",
-        				weiboClient.sendGetRequest(Timeline.getFriendsTimeline()));
-        		weiboTimelineIntent.setClass(TinywaveActivity.this, TimelineActivity.class);
-		
-        		TinywaveActivity.this.startActivity(weiboTimelineIntent);
+        		startActivity(new Intent(TinywaveActivity.this, ExploreTimelineActivity.class));
         	}
         });
+
+        exploreCommentButton.setOnClickListener(new OnClickListener(){
+        	@Override
+        	public void onClick(View v) {
+        		startActivity(new Intent(TinywaveActivity.this, ExploreCommentActivity.class));
+        	}
+        });
+
+        exploreFavoriteButton.setOnClickListener(new OnClickListener(){
+        	@Override
+        	public void onClick(View v) {
+        		startActivity(new Intent(TinywaveActivity.this, ExploreFavoriteActivity.class));
+        	}
+        });
+
+        exploreFriendButton.setOnClickListener(new OnClickListener(){
+        	@Override
+        	public void onClick(View v) {
+        		startActivity(new Intent(TinywaveActivity.this, ExploreFriendActivity.class));
+        	}
+        });
+
     }
 
 }
