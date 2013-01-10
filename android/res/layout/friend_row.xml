@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="1dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:paddingTop="1dip" >
+
+    <ImageView
+        android:id="@+id/friend_avatar"
+        android:layout_width="50dip"
+        android:layout_height="50dip"
+        android:contentDescription="Friend avatar" />
+
+    <LinearLayout
+        android:id="@+id/friend_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/friend_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:typeface="serif" />
+
+        <TextView
+            android:id="@+id/friend_basic_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:gravity="bottom" />
+    </LinearLayout>
+
+</LinearLayout>

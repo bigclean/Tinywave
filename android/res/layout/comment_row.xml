@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="1dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:paddingTop="1dip" >
+
+    <ImageView
+        android:id="@+id/comment_user_avatar"
+        android:layout_width="35dip"
+        android:layout_height="35dip"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="Comment user avatar" />
+
+    <RelativeLayout
+        android:id="@+id/comment_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/comment_user_avatar"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/comment_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/comment_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/comment_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/comment_user_name"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/comment_user_name"
+                android:gravity="right"
+                android:singleLine="true"
+                android:textColor="@android:color/darker_gray"
+                android:textStyle="italic"
+                android:typeface="sans" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/comment_contents"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/comment_header"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/comment_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:typeface="serif" />
+
+            <RelativeLayout
+                android:id="@+id/comment_status_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/comment_text"
+                android:padding="10dip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/comment_status_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:typeface="serif"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/comment_status_thumbnail"
+                    android:layout_width="120dip"
+                    android:layout_height="120dip"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/comment_status_text"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:contentDescription="Weibo commented status picture"
+                    android:scaleType="fitCenter"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/comment_reply_comment_text"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/comment_status_layout"
+                android:typeface="serif"
+                android:visibility="gone" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

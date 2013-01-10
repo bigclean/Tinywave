@@ -1,0 +1,25 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <com.viewpagerindicator.TitlePageIndicator
+        android:id="@+id/timeline_indicator"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#AA000000"
+        android:padding="10dip" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/timeline_pager"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1" />
+
+    <com.markupartist.android.widget.ActionBar
+        android:id="@+id/timeline_action_bar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#AA000000" />
+
+</LinearLayout>

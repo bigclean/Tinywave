@@ -12,6 +12,7 @@
         android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".TinywaveApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
         <activity
@@ -26,23 +27,43 @@
 
         <activity
             android:name=".activity.LoginActivity"
-            android:label="test"
-            android:launchMode="singleInstance" >
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-
-                <data android:scheme="tinywave" android:host="authorize" />
-            </intent-filter>
+            android:label="Login" >
         </activity>
 
         <activity
-            android:name=".activity.TimelineActivity"
-            android:label="timeline" >
+            android:name=".activity.ExploreTimelineActivity"
+            android:label="Explore timeline" >
         </activity>
 
+        <activity
+            android:name=".activity.ExploreCommentActivity"
+            android:label="Explore comments" >
+        </activity>
+
+        <activity
+            android:name=".activity.ExploreFavoriteActivity"
+            android:label="Explore favorites" >
+        </activity>
+
+        <activity
+            android:name=".activity.ReplyTweetActivity"
+            android:label="Reply and Tweet" >
+        </activity>
+
+        <activity
+            android:name=".activity.ExploreFriendActivity"
+            android:label="Friends" >
+        </activity>
+
+        <activity
+            android:name = ".activity.UserAboutActivity"
+            android:label="About...">
+        </activity>
+
+        <activity
+            android:name = ".activity.StatusDetailsActivity"
+            android:label="Status details...">
+        </activity>
     </application>
 
 </manifest>

@@ -10,21 +10,45 @@
         android:text="@string/hello" />
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/login_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="test" />
 
     <Button
-        android:id="@+id/tweet"
+        android:id="@+id/tweet_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="tweet" />
 
     <Button
-        android:id="@+id/timeline"
+        android:id="@+id/comment_button"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="timeline" />
+        android:text="Comment" />
+
+    <Button
+        android:id="@+id/explore_timeline_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Explore timeline" />
+
+    <Button
+        android:id="@+id/explore_comment_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Explore comment" />
+
+    <Button
+        android:id="@+id/explore_favorite_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Explore favorite" />
+
+    <Button
+        android:id="@+id/explore_friend_button"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Explore friend" />
 
 </LinearLayout>

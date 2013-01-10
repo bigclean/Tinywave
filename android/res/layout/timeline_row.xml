@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="1dip"
+    android:paddingLeft="10dip"
+    android:paddingRight="10dip"
+    android:paddingTop="1dip" >
+
+    <ImageView
+        android:id="@+id/status_user_avatar"
+        android:layout_width="35dip"
+        android:layout_height="35dip"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="User avatar" />
+
+    <LinearLayout
+        android:id="@+id/status_frame"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/status_user_avatar"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@+id/status_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/status_user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <TextView
+                android:id="@+id/status_timestamp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/status_user_name"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/status_user_name"
+                android:gravity="right"
+                android:singleLine="true"
+                android:textStyle="italic"
+                android:typeface="sans" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/status_literal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <RelativeLayout
+                android:id="@+id/status_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/status_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:typeface="serif" />
+
+                <ImageView
+                    android:id="@+id/status_thumbnail"
+                    android:layout_width="120dip"
+                    android:layout_height="120dip"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/status_text"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Weibo status picture"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/status_retweeted_status_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/status_layout"
+                android:padding="10dip"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/status_retweeted_status_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:typeface="serif"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/status_retweeted_status_thumbnail"
+                    android:layout_width="120dip"
+                    android:layout_height="120dip"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@id/status_retweeted_status_text"
+                    android:scaleType="fitCenter"
+                    android:contentDescription="Weibo retweeted status picture"
+                    android:visibility="gone" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/status_extra"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:id="@+id/status_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:singleLine="true"
+                android:textSize="12dip"
+                android:typeface="serif" />
+
+            <RelativeLayout
+                android:id="@+id/status_social"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/status_source"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/status_comments_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:singleLine="true"
+                    android:textSize="12dip"
+                    android:typeface="sans" />
+
+                <TextView
+                    android:id="@+id/status_reposts_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/status_comments_count"
+                    android:singleLine="true"
+                    android:textSize="12dip"
+                    android:typeface="sans" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>
